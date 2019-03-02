@@ -1,0 +1,19 @@
+
+.consumption {
+	padding-left: .3rem;
+	line-height: .9rem;
+	font-size: .28rem;
+	color: #999;
+}
+
+.record_item {
+	padding: .3rem;
+	border-bottom: 1px solid #e9e9e9;
+}
+.record_item img {
+	display: block;
+	width: .8rem;
+	height: .8rem;
+	margin-right: .3rem;
+	border-radius: 50%;
+}

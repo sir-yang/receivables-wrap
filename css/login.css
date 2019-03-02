@@ -1,0 +1,89 @@
+
+.login_tab_box {
+	line-height: .88rem;
+	background: #fff;
+	font-size: .32rem;
+	color: #000;
+	text-align: center;
+}
+.login_tab_box > div {
+	position: relative;
+}
+.login_tab_box > div.on::after {
+	display: block;
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: .6rem;
+	height: 3px;
+	margin-left: -.3rem;
+	border-radius: 2px;
+	background: #ff9e05;
+}
+
+
+.ipt_box {
+	position: relative;
+	height: 1.1rem;
+}
+.ipt_box:last-child {
+	border-bottom: none;
+}
+.ipt_box:first-child::after {
+	display: block;
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: .3rem;
+	right: 0;
+	height: 1px;
+	background: #e9e9e9;
+}
+
+.ipt_box input {
+	padding-left: .3rem;
+	font-size: .32rem;
+	color: #333;
+	line-height: .6rem;
+	border: none;
+	outline: none;
+}
+.ipt_box .code_btn {
+	display: block;
+	width: 1.7rem;
+	height: .6rem;
+	margin-left: .3rem;
+	line-height: .6rem;
+	text-align: center;
+	background: #ff9e05;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
+	border: none;
+	outline: none;
+	font-size: .26rem;
+	color: #fff;
+}
+.ipt_box .code_btn.disabled {
+	background: #ccc;
+}
+
+.submit_btn {
+	display: block;
+	width: 6.9rem;
+	height: .98rem;
+	margin: 1.2rem .3rem .2rem;
+	line-height: .98rem;
+	text-align: center;
+	-webkit-border-radius: .12rem;
+	-moz-border-radius: .12rem;
+	-o-border-radius: .12rem;
+	border-radius: .12rem;
+	border: none;
+	outline: none;
+	background: #ff9e05;
+	font-size: .36rem;
+	color: #fff;
+}
