@@ -1,0 +1,82 @@
+
+.logo_img {
+	display: block;
+	width: .8rem;
+	height: .8rem;
+	margin-right: .3rem;
+	border-radius: 50%;
+}
+
+.money_box {
+/*	margin-top: .4rem;
+	margin-bottom: .2rem;*/
+}
+.money_box span {
+	font-size: .7rem;
+	color: #333;
+}
+.money_box input {
+	height: .4rem;
+	margin-bottom: .2rem;
+	border: none;
+	outline: none;
+	line-height: .4rem;
+	font-size: .34rem;
+	color: #333;
+}
+
+.pay_way_box {
+	margin-top: .2rem;
+	padding: 0 .3rem;
+	background: #fff;
+}
+.pay_way_box > div {
+	position: relative;
+	height: 1.1rem;
+	border-bottom: 1px solid #e9e9e9;
+}
+.pay_way_box > div .pay_way_icon {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+}
+.way_icon_1 {
+	width: .39rem;
+	height: .35rem;
+}
+.way_icon_2 {
+	width: .38rem;
+	height: .38rem;
+}
+.way_icon_3 {
+	width: .35rem;
+	height: .4rem;
+}
+.pay_way_box > div label {
+	margin-left: .7rem;
+	font-size: .3rem;
+	color: #333;
+}
+
+.pay_way_box > div i {
+	font-size: .36rem;
+}
+.pay_way_box > div i.weui-icon-success {
+	color: #ff9e05;
+}
+
+.fixed_bottom_btn {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 1.08rem;
+	line-height: 1.08rem;
+	background: #ff9e05;
+	color: #fff;
+	text-align: center;
+}
+.fixed_bottom_btn .total_money {
+	font-size: .5rem;
+}

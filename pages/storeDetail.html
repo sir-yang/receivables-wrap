@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/weui.min.css">
+    <link rel="stylesheet" href="../css/jquery-weui.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/storeDetail.css">
+    <script src="../js/setFontSize.js"></script>
+    <title>商家详情</title>
+</head>
+<body>
+
+    <div class="page">
+        <div class="page__bd" style="height: 100%;">
+            <div class="swiper-container-box pos">
+                <!-- 轮播 -->
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt=""></div>
+                        <div class="swiper-slide"><img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt=""></div>
+                        <div class="swiper-slide"><img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt=""></div>
+                    </div>
+                </div>
+                <div class="picNum">3张图</div>
+            </div>
+
+            <div class="base_info_box pos bgfff plr30 pb30">
+                <img class="store_logo" src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
+                <h3 class="store_tit">丸摩堂手工鲜做饮品</h3>
+                <div class="discount">6.8折</div>
+
+                <div class="flex_between flex_items">
+                    <div class="flex1">
+                        <div class="flex_start flex_items">
+                            <img class="time_icon" src="../images/time_icon.png" alt="">
+                            <div class="f32 c3">营业时间：09:00-22:00</div>
+                        </div>
+                        <div class="flex_start mt10">
+                            <img class="address_icon" src="../images/address_icon_1.png" alt="">
+                            <div class="f32 c3">成都市金牛区一品天下66号</div>
+                        </div>
+                    </div>
+                    <div class="phone_icon_box">
+                        <img src="../images/phone_icon.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="store_detail_info">
+                <div class="tit_label">商家详情</div>
+                <div class="detail_info">
+                    <p>丸摩堂首创的“鲜茶果肉多”系列饮品，均选用当季新鲜水果，经过手工榨取，取汁且留肉，配以经过巴氏消毒的味全鲜奶及原汁萃取的茶汤，充分保证品质的同时，最大程度上保证了水果最天然的口感和滋味。</p>
+                    <img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
+                </div>
+                <pre></pre>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="../js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="../js/jquery-weui.min.js"></script>
+    <script type='text/javascript' src='../js/swiper.js' charset='utf-8'></script>
+    <script type="text/javascript">
+        var mySwiper = new Swiper('.swiper-container', {
+            loop: true,
+            autoplay: 3000,//可选选项，自动滑动
+            autoplayDisableOnInteraction: false,//用户操作swiper之后停止自动切换
+            speed: 500
+        });
+    </script>
+</body>
+</html>

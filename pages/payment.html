@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/weui.min.css">
+    <link rel="stylesheet" href="../css/jquery-weui.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/payment.css">
+    <script src="../js/setFontSize.js"></script>
+    <title>支付</title>
+</head>
+<body>
+
+    <div class="page">
+        <div class="page__bd" style="height: 100%;">
+            <div class="flex_start flex_items bgfff ptb20 plr30 bbe9s">
+                <img class="logo_img" src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
+                <div class="f34 c3">丸摩堂手工鲜做饮品</div>
+            </div>
+
+            <div class="bgfff mt20 p30 bte9s bbe9s">
+                <div class="f30 c6">付款金额</div>
+                <div class="money_box flex_start mt20">
+                    <span>￥</span>
+                    <input class="flex1 self_end" name="money" type="text" maxlength="10" placeholder="输入支付金额" />
+                </div>
+            </div>
+
+            <div class="pay_way_box">
+                <div class="flex_between flex_items">
+                    <img class="pay_way_icon way_icon_1" src="../images/pay_way_1.png" alt="">
+                    <label>微信支付</label>
+                    <i class="weui-icon-success"></i>
+                </div>
+                <div class="flex_between flex_items">
+                    <img class="pay_way_icon way_icon_2" src="../images/pay_way_2.png" alt="">
+                    <label>支付宝支付</label>
+                    <i class="weui-icon-circle"></i>
+                </div>
+                <div class="flex_between flex_items">
+                    <img class="pay_way_icon way_icon_3" src="../images/pay_way_3.png" alt="">
+                    <label>余额支付<span class="f22 c9">(<span class="canuser">6.88</span>元可用)</span></label>
+                    <i class="weui-icon-circle"></i>
+                </div>
+            </div>
+
+            <div class="fixed_bottom_btn flex_center flex_items" onclick="surePay()"><span class="f30">确认付款</span> <span class="f36">￥</span> <span class="total_money">68.00</span></div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="../js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="../js/jquery-weui.min.js"></script>
+    <script type='text/javascript' src='../js/swiper.js' charset='utf-8'></script>
+    <script type="text/javascript">
+        $('.pay_way_box').on('click', 'div', function() {
+            if (!$(this).find('i').hasClass('weui-icon-success')) {
+                $(this).find('i').attr('class','weui-icon-success').parent().siblings().find('i').attr('class', 'weui-icon-circle');
+            }
+        })
+
+        // 确认支付
+        function surePay() {
+            var money = $('input[name=money]').val();
+            if(!money || money.length == "" || money == "") {
+                $.toast('请输入支付金额','text');
+                return;
+            }
+
+            if(isNaN(money)) {
+                $.toast('金额格式错误','text');
+                return;
+            }
+
+            if(Number(money) <= 0) {
+                $.toast('金额必须大于0','text');
+                return;
+            }
+
+            // 判断小数
+            var moneyArr = money.split('.');
+            if (moneyArr.length > 1) {
+                console.log(moneyArr[1].length);
+                if (moneyArr[1].length > 2) {
+                    $.toast('最多保留两位小数','text');
+                    return;
+                }
+            }
+
+            // 支付方式索引
+            var wayIdx = $('i.weui-icon-success').parent().index();
+
+            // 余额支付，判断余额是否足够
+            var total = $('.canuser').html(); //可用余额
+            if (Number(money) > Number(total) && wayIdx == 2) {
+                $.toast('钱包余额不足','text');
+                return;
+            }
+
+            console.log(12, wayIdx,money);
+            $.toast('支付成功','text');
+        }
+    </script>
+</body>
+</html>

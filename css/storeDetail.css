@@ -1,0 +1,117 @@
+
+/*轮播*/
+.swiper-container {
+    width: 100%;
+    height: 3.8rem;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 3.8rem;
+}
+.picNum {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 100;
+	font-size: .24rem;
+	color: #fff;
+	line-height: .4rem;
+	background: rgba(0,0,0,.5);
+	padding: 0 5px;
+}
+
+.base_info_box .store_logo {
+	display: block;
+	position: absolute;
+	top: -.5rem;
+	left: .3rem;
+	z-index: 1000;
+	width: 1.32rem;
+	height: 1.32rem;
+	border: 3px solid #fff;
+	border-radius: 50%;
+}
+
+.base_info_box .store_tit {
+	padding-top: .2rem;
+	margin-left: 1.6rem;
+	font-size: .36rem;
+}
+
+.base_info_box .discount {
+	width: 1.1rem;
+	height: .4rem;
+	margin-top: .5rem;
+	margin-bottom: .3rem;
+	background: #fff5f4;
+	border: 1px solid #fecbc8;
+	border-radius: 3px;
+	line-height: .4rem;
+	text-align: center;
+	font-size: .26rem;
+	color: #fb4e44;
+}
+
+.base_info_box .time_icon {
+	display: block;
+	width: .28rem;
+	height: .28rem;
+	margin-right: .16rem;
+}
+.base_info_box .address_icon {
+	display: block;
+	width: .23rem;
+	height: .32rem;
+	margin-right: .2rem;
+	margin-top: .1rem;
+}
+.base_info_box .phone_icon_box {
+	width: .86rem;
+	height: .86rem;
+	margin-left: .2rem;
+	border-radius: 50%;
+	background: #ff9e05;
+}
+.base_info_box .phone_icon_box img {
+	display: block;
+	width: .36rem;
+	height: .37rem;
+	margin: .25rem auto 0;
+}
+
+.store_detail_info {
+	margin-top: .2rem;
+	background: #fff;
+}
+.store_detail_info .tit_label {
+	position: relative;
+	padding-left: .55rem;
+	font-size: .3rem;
+	color: #333;
+	line-height: .88rem;
+	border-bottom: 1px solid #e9e9e9;
+}
+.store_detail_info .tit_label::before {
+	display: block;
+	content: '';
+	position: absolute;
+	left: .3rem;
+	top: 50%;
+	height: .36rem;
+	width: 2px;
+	margin-top: -0.18rem;
+	background: #ff9e05;
+}
+
+.store_detail_info .detail_info {
+	padding: .3rem .3rem .4rem;
+	font-size: .28rem;
+	color: #333;
+}
+.store_detail_info .detail_info p {
+	margin-bottom: .1rem;
+}
+.store_detail_info .detail_info img {
+	width: 100%;
+}
