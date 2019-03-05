@@ -73,11 +73,17 @@
 	border-radius: 50%;
 	background: #ff9e05;
 }
+.phone_icon_box a {
+	display: block;
+	height: 100%;
+	padding-top: .25rem;
+	box-sizing: border-box;
+}
 .base_info_box .phone_icon_box img {
 	display: block;
 	width: .36rem;
 	height: .37rem;
-	margin: .25rem auto 0;
+	margin: auto;
 }
 
 .store_detail_info {

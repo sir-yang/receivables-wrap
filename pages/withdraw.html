@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/weui.min.css">
+    <link rel="stylesheet" href="../css/jquery-weui.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/withdraw.css">
+    <script src="../js/setFontSize.js"></script>
+    <title>提现</title>
+</head>
+<body>
+
+    <div class="page">
+        <div class="page__bd" style="height: 100%;">
+            <div class="bgfff pt30 plr30 pb20">
+                <div class="f30 c6">付款金额</div>
+                <div class="wattle_money_box flex_start flex_items">
+                    <span>￥</span>
+                    <input class="flex1 self_end" name="money" type="text" placeholder="请输入提现金额" />
+                </div>
+                <div class="flex_between flex_items">
+                    <p class="f24 c9">可用余额<span class="total_money">1000</span>元</p>
+                    <span class="f24 cm p10" onclick="withdrawAll()">全部提现</span>
+                </div>
+            </div>
+
+            <div class="pay_way_box">
+                <div class="flex_between flex_items">
+                    <img class="pay_way_icon way_icon_1" src="../images/pay_way_1.png" alt="">
+                    <label>微信支付</label>
+                    <i class="weui-icon-success"></i>
+                </div>
+                <div class="flex_between flex_items">
+                    <img class="pay_way_icon way_icon_2" src="../images/pay_way_2.png" alt="">
+                    <label>支付宝支付</label>
+                    <i class="weui-icon-circle"></i>
+                </div>
+            </div>
+            
+            <div class="apply_wattle_btn" onclick="applyWithdraw()">申请提现</div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="../js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="../js/jquery-weui.min.js"></script>
+    <script type='text/javascript' src='../js/swiper.js' charset='utf-8'></script>
+    <script type="text/javascript">
+
+        $('.pay_way_box').on('click', 'div', function() {
+            if (!$(this).find('i').hasClass('weui-icon-success')) {
+                $(this).find('i').attr('class','weui-icon-success').parent().siblings().find('i').attr('class', 'weui-icon-circle');
+            }
+        })
+
+        // 全部提现
+        function withdrawAll() {
+            var money = $('input[name=money]').val();
+            var total_money = $('.total_money').html();
+            if (Number(money) > Number(total_money)) {
+                $.toast('钱包余额不足','text');
+                return;
+            }
+            $('input[name=money]').val(total_money);
+        }
+
+        // 申请提现
+        function applyWithdraw() {
+            var money = $('input[name=money]').val();
+            if(!money || money.length == "" || money == "") {
+                $.toast('请输入提现金额','text');
+                return;
+            }
+
+            if(isNaN(money)) {
+                $.toast('金额格式错误','text');
+                return;
+            }
+
+            if(Number(money) <= 0) {
+                $.toast('金额必须大于0','text');
+                return;
+            }
+
+            // 判断小数
+            var moneyArr = money.split('.');
+            if (moneyArr.length > 1) {
+                console.log(moneyArr[1].length);
+                if (moneyArr[1].length > 2) {
+                    $.toast('最多保留两位小数','text');
+                    return;
+                }
+            }
+
+            var total_money = $('.total_money').html();
+            if (Number(money) > Number(total_money)) {
+                $.toast('钱包余额不足','text');
+                return;
+            }
+
+            // 提现方式索引
+            var wayIdx = $('i.weui-icon-success').parent().index();
+            console.log(wayIdx);
+            self.location.href = 'withdrawRecord.html';
+        }
+    </script>
+</body>
+</html>

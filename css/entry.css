@@ -1,0 +1,130 @@
+
+.logo_box {
+	padding: .3rem 0;
+	background: #fff;
+	text-align: center;
+}
+.logo_box img {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.entry_ipt_box {
+	height: 1rem;
+	margin-top: .2rem;
+	padding: 0 .3rem;
+	background: #fff;
+}
+.entry_ipt_box label,
+.label {
+	position: relative;
+	width: 1.4rem;
+	line-height: .6rem;
+	font-size: .3rem;
+	color: #333;
+}
+.entry_ipt_box label.mast::after {
+	display: block;
+	content: '*';
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: .24rem;
+	color: #ff0000;
+}
+
+.entry_ipt_box input {
+	margin-left: .3rem;
+	line-height: .6rem;
+	border: none;
+	outline: none;
+	font-size: .28rem;
+	color: #333;
+}
+
+.association_btn {
+	background: transparent;
+	border: 1px solid #ff9e05;
+	border-radius: 3px;
+	font-size: .24rem;
+	text-align: center;
+	color: #ff9e05;
+}
+.association_btn_1 {
+	width: 1.42rem;
+}
+.association_btn_2 {
+	width: 1.32rem;
+}
+
+.entry_ipt_box .time_box input {
+	width: 1rem;
+	padding: 0 .2rem;
+	margin-left: 0;
+}
+.entry_ipt_box .right_icon {
+	display: block;
+	width: .15rem;
+	height: .25rem;
+}
+
+.img_box img {
+	display: block;
+	width: 3.35rem;
+	height: 1.67rem;
+	margin-right: .2rem;
+	margin-bottom: .2rem;
+}
+.img_box img:nth-child(even) {
+	margin-right: 0;
+}
+.img_box img.add_icon {
+	width: 1.4rem;
+	height: 1.4rem;
+}
+
+.introduction {
+	margin-left: .3rem;
+	margin-bottom: .2rem;
+	padding-top: .1rem;
+	border: none;
+	outline: none;
+	line-height: .4rem;
+	font-size: .28rem;
+	color: #333;
+}
+
+.intro_img_box .img_item_box {
+	position: relative;
+	width: 1.4rem;
+	height: 1.4rem;
+	padding: .15rem;
+}
+.intro_img_box .img_item_box:nth-child(4n+1) {
+	padding-left: 0;
+}
+.intro_img_box img {
+	display: block;
+	width: 1.4rem;
+	height: 1.4rem;
+}
+.intro_img_box .img_item_box img.img_close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: .3rem;
+	height: .3rem;
+}
+
+.apply_entry_btn {
+	width: 6.9rem;
+	height: .8rem;
+	margin: 1.5rem auto .5rem;
+	border-radius: .1rem;
+	text-align: center;
+	line-height: .8rem;
+	background: #ff9e05;
+	font-size: .32rem;
+	color: #fff;
+}
+

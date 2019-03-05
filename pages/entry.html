@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/weui.min.css">
+    <link rel="stylesheet" href="../css/jquery-weui.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/entry.css">
+    <script src="../js/setFontSize.js"></script>
+    <title>我要入驻</title>
+</head>
+<body>
+
+    <div class="page">
+        <div class="page__bd" style="height: 100%;">
+            <div class="logo_box">
+                <img src="../images/logo_icon.png" alt="">
+            </div>
+            <div class="entry_ipt_box flex_start flex_items">
+                <label class="mast">店铺名称</label>
+                <input class="flex1" type="text" placeholder="请输入店铺名称" />
+            </div>
+            <div class="entry_ipt_box flex_start flex_items">
+                <label class="mast">店铺电话</label>
+                <input class="flex1" type="text" placeholder="请输入店铺电话" />
+                <div class="association_btn association_btn_1"><span>+</span>关联员工</div>
+            </div>
+            <div class="entry_ipt_box flex_start flex_items">
+                <label>员工电话</label>
+                <input class="flex1" type="text" placeholder="关联员工电话" />
+            </div>
+            <div class="entry_ipt_box flex_start flex_items">
+                <label class="mast">店铺地址</label>
+                <input class="flex1" type="text" placeholder="请输入店铺地址" />
+                <div class="association_btn association_btn_2">设置定位</div>
+            </div>
+            <div class="entry_ipt_box flex_start flex_items">
+                <label class="mast">营业时间</label>
+                <div class="time_box flex1 flex_center">
+                    <input type="text" class="txt_right" readonly placeholder="请选择" />
+                    <span>-</span>
+                    <input type="text" readonly placeholder="请选择" />
+                </div>
+                <img class="right_icon" src="../images/arrow_right.png" alt="">
+            </div>
+
+            <div class="bgfff p30 mt20">
+                <div class="f30 c3 mb30">轮播图<span class="f26 ml20">(为保证显示效果，建议上传3张以上图片)</span></div>
+                <div class="img_box flex_warp">
+                    <img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
+                    <img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
+                    <img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
+                    <img class="add_icon" onclick="$(this).next().click();" src="../images/add_img_icon.png" alt="" />
+                    <input class="hide" type="file" />
+                </div>
+            </div>
+            <div class="bgfff p30 mt20">
+                <div class="flex_start">
+                    <label class="label">店铺简介</label>
+                    <textarea class="flex1 introduction" rows="5" maxlength="200" placeholder="请输入店铺简介"></textarea>
+                </div>
+                <div class="intro_img_box flex_warp">
+                    <div class="img_item_box">
+                        <img class="img_close" onclick="closeImg(this)" src="../images/img_close.png" alt="">
+                        <img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
+                    </div>
+                    <div class="img_item_box">
+                        <img class="img_close" onclick="closeImg(this)" src="../images/img_close.png" alt="">
+                        <img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
+                    </div>
+                    <div class="img_item_box">
+                        <img class="img_close" onclick="closeImg(this)" src="../images/img_close.png" alt="">
+                        <img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
+                    </div>
+                    <div class="img_item_box" onclick="$(this).find('input')[0].click();">
+                        <input class="hide" type="file" />
+                        <img class="add_icon" src="../images/add_img_icon.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="apply_entry_btn">申请入驻</div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="../js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="../js/jquery-weui.min.js"></script>
+    <script type='text/javascript' src='../js/swiper.js' charset='utf-8'></script>
+    <script type="text/javascript">
+        // 删除图片
+        function closeImg(e) {
+            $(e).parent().remove();
+        }
+    </script>
+</body>
+</html>

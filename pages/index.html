@@ -181,9 +181,9 @@
     <div class="rebate_modal_content_box">
         <div class="content_box">
             <div class="rebate_money">6.88</div>
-            <div class="know_btn">我知道了</div>
+            <div class="know_btn" onclick="closeModal()">我知道了</div>
         </div>
-        <img class="colse_icon" src="../images/close_icon.png" alt="">
+        <img class="colse_icon" onclick="closeModal();" src="../images/close_icon.png" alt="">
     </div>
 
 
@@ -206,6 +206,10 @@
                 $(this).addClass('on').siblings().removeClass('on');
             }
         })
+
+        function closeModal() {
+            $('.rebate_modal_content_box').hide().prev().hide();
+        }
     </script>
 </body>
 </html>

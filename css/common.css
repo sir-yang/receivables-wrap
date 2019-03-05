@@ -214,6 +214,10 @@ body {
 
 
 /*边距*/
+.p10 {
+    padding: .1rem;
+}
+
 .p20 {
     padding: .2rem;
 }
@@ -391,11 +395,6 @@ body {
 }
 .show {
     display: block;
-}
-
-
-body {
-	background: #f6f6f6;
 }
 
 

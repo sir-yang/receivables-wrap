@@ -1,0 +1,68 @@
+
+.wattle_money_box {
+	padding: .4rem 0;
+	margin-bottom: .2rem;
+	border-bottom: 1px solid #e9e9e9;
+}
+
+.wattle_money_box span {
+	font-size: .7rem;
+	line-height: .7rem;
+	color: #333;
+}
+.wattle_money_box input {
+	line-height: .4rem;
+	border: none;
+	outline: none;
+	font-size: .32rem;
+	color: #333;
+}
+
+.pay_way_box {
+	margin-top: .2rem;
+	padding: 0 .3rem;
+	background: #fff;
+}
+.pay_way_box > div {
+	position: relative;
+	height: 1.1rem;
+	border-bottom: 1px solid #e9e9e9;
+}
+.pay_way_box > div .pay_way_icon {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+}
+.way_icon_1 {
+	width: .39rem;
+	height: .35rem;
+}
+.way_icon_2 {
+	width: .38rem;
+	height: .38rem;
+}
+.pay_way_box > div label {
+	margin-left: .7rem;
+	font-size: .3rem;
+	color: #333;
+}
+
+.pay_way_box > div i {
+	font-size: .36rem;
+}
+.pay_way_box > div i.weui-icon-success {
+	color: #ff9e05;
+}
+
+.apply_wattle_btn {
+	width: 6.9rem;
+	margin: 1rem auto .2rem;
+	height: .88rem;
+	border-radius: .1rem;
+	line-height: .88rem;
+	background: #ff9e05;
+	text-align: center;
+	font-size: .3rem;
+	color: #fff;
+}
