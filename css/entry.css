@@ -7,6 +7,7 @@
 .logo_box img {
 	width: 1.5rem;
 	height: 1.5rem;
+	border-radius: 50%;
 }
 
 .entry_ipt_box {

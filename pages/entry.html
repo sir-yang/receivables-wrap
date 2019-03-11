@@ -18,7 +18,8 @@
 
     <div class="page">
         <div class="page__bd" style="height: 100%;">
-            <div class="logo_box">
+            <div class="logo_box" onclick="$(this).find('input')[0].click()">
+                <input class="hide" type="file" onchange="uploadImg(this, 1)" />
                 <img src="../images/logo_icon.png" alt="">
             </div>
             <div class="entry_ipt_box flex_start flex_items">
@@ -37,7 +38,7 @@
             <div class="entry_ipt_box flex_start flex_items">
                 <label class="mast">店铺地址</label>
                 <input class="flex1" type="text" placeholder="请输入店铺地址" />
-                <div class="association_btn association_btn_2">设置定位</div>
+                <div class="association_btn association_btn_2" onclick="geolocation.getLocation(showPosition, showErr, options)">设置定位</div>
             </div>
             <div class="entry_ipt_box flex_start flex_items">
                 <label class="mast">营业时间</label>
@@ -51,12 +52,24 @@
 
             <div class="bgfff p30 mt20">
                 <div class="f30 c3 mb30">轮播图<span class="f26 ml20">(为保证显示效果，建议上传3张以上图片)</span></div>
-                <div class="img_box flex_warp">
+<!--                 <div class="img_box flex_warp">
                     <img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
                     <img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
                     <img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
                     <img class="add_icon" onclick="$(this).next().click();" src="../images/add_img_icon.png" alt="" />
-                    <input class="hide" type="file" />
+                    <input class="hide" type="file" onchange="uploadImg(this, 2)" />
+                </div> -->
+
+                <div class="intro_img_box flex_warp">
+                    <div class="img_item_box">
+                        <img class="img_close" onclick="closeImg(this)" src="../images/img_close.png" alt="">
+                        <img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
+                    </div>
+                    
+                    <div class="img_item_box" onclick="$(this).find('input')[0].click();">
+                        <input class="hide" type="file" onchange="uploadImg(this, 3)" />
+                        <img class="add_icon" src="../images/add_img_icon.png" alt="">
+                    </div>
                 </div>
             </div>
             <div class="bgfff p30 mt20">
@@ -69,16 +82,9 @@
                         <img class="img_close" onclick="closeImg(this)" src="../images/img_close.png" alt="">
                         <img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
                     </div>
-                    <div class="img_item_box">
-                        <img class="img_close" onclick="closeImg(this)" src="../images/img_close.png" alt="">
-                        <img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
-                    </div>
-                    <div class="img_item_box">
-                        <img class="img_close" onclick="closeImg(this)" src="../images/img_close.png" alt="">
-                        <img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
-                    </div>
+
                     <div class="img_item_box" onclick="$(this).find('input')[0].click();">
-                        <input class="hide" type="file" />
+                        <input class="hide" type="file" onchange="uploadImg(this, 3)" />
                         <img class="add_icon" src="../images/add_img_icon.png" alt="">
                     </div>
                 </div>
@@ -92,11 +98,55 @@
     <script type="text/javascript" src="../js/jquery-2.1.4.js"></script>
     <script type="text/javascript" src="../js/jquery-weui.min.js"></script>
     <script type='text/javascript' src='../js/swiper.js' charset='utf-8'></script>
+    <!-- <script type="text/javascript" src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script> -->
+    <script charset="utf-8" src="https://map.qq.com/api/js?v=2.exp&key=NKDBZ-Q6RWU-TO7VE-2MRPR-PLDV3-VZFOZ&libraries=geometry,place,convertor"></script>
+
     <script type="text/javascript">
         // 删除图片
         function closeImg(e) {
             $(e).parent().remove();
         }
+
+    //     var geolocation = new qq.maps.Geolocation("NKDBZ-Q6RWU-TO7VE-2MRPR-PLDV3-VZFOZ", "myapp"); 
+    //     var positionNum = 0;
+    //     var options = {timeout: 8000};
+    //     function showPosition(position) {
+    //         console.log(1212);
+    //         var adCode = position.adCode;//邮政编码
+    //         var nation = position.nation;//中国
+    //         var city = position.city; //城市
+    //         var addr = position.addr; //详细地址
+    //         var lat = position.lat; //
+    //         var lng = position.lng; //火星坐标 //TODO 实现业务代码逻辑 
+    //         console.log(position);
+    //      }; 
+    //     function showErr(err) { 
+    //         console.log(222,err);
+    //         //TODO 如果出错了调用此方法 
+    //     };
+
+
+        // 文件上传
+        function uploadImg(f, types) { //f->this, types->上传类型
+            var files = f.files[0];//获取file组件中的文件
+            if (files.type.indexOf("image") == 0) {//确认选择的文件是图片
+                var rd = new FileReader();//创建文件读取对象
+                rd.readAsDataURL(files);//文件读取装换为base64类型
+                rd.onloadend = function(e) {
+                    //加载完毕之后获取结果赋值给img
+                    if (types == 1) { //logo
+                        $('.logo_box').find('img').attr('src',this.result);
+                    } else if (types == 2) { //轮播图
+                        // $('.img_box').append('<img src="'+this.result+'">');
+                        $(f).prev().before('<img src="'+this.result+'">');
+                    } else { //简介
+                        var imgbox = $('<div class="img_item_box"><img class="img_close" onclick="closeImg(this)" src="../images/img_close.png" alt=""><img src="'+this.result+'" alt=""></div>');
+                        $(f).parent().before(imgbox)
+                    }
+                }
+            }
+        }
+
     </script>
 </body>
 </html>
