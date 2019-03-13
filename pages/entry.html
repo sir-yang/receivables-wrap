@@ -29,45 +29,45 @@
             <div class="entry_ipt_box flex_start flex_items">
                 <label class="mast">店铺电话</label>
                 <input class="flex1" type="text" placeholder="请输入店铺电话" />
-                <div class="association_btn association_btn_1"><span>+</span>关联员工</div>
+                <div class="association_btn association_btn_1" onclick="linkPhone(this)">+关联员工</div>
             </div>
-            <div class="entry_ipt_box flex_start flex_items">
-                <label>员工电话</label>
-                <input class="flex1" type="text" placeholder="关联员工电话" />
+            <div class="hide">
+                <div class="entry_ipt_box flex_start flex_items">
+                    <label>员工电话</label>
+                    <input class="flex1" type="text" placeholder="员工电话(多个用英文逗号隔开)" />
+                </div>
             </div>
             <div class="entry_ipt_box flex_start flex_items">
                 <label class="mast">店铺地址</label>
-                <input class="flex1" type="text" placeholder="请输入店铺地址" />
-                <div class="association_btn association_btn_2" onclick="geolocation.getLocation(showPosition, showErr, options)">设置定位</div>
+                <input class="flex1" type="text" name="storeAddress" readonly placeholder="请输入店铺地址" />
+                <div class="association_btn association_btn_2" onclick="showMap()">设置定位</div>
             </div>
             <div class="entry_ipt_box flex_start flex_items">
                 <label class="mast">营业时间</label>
                 <div class="time_box flex1 flex_center">
-                    <input type="text" class="txt_right" readonly placeholder="请选择" />
+                    <div class="time_item_box">
+                        <input type="text" id="picker-start" readonly />
+                        <input type="text" class="txt_right" readonly placeholder="请选择" />
+                    </div>
                     <span>-</span>
-                    <input type="text" readonly placeholder="请选择" />
+                    <div class="time_item_box">
+                        <input type="text" id="picker-end" readonly />
+                        <input type="text" readonly placeholder="请选择" />
+                    </div>
                 </div>
                 <img class="right_icon" src="../images/arrow_right.png" alt="">
             </div>
 
             <div class="bgfff p30 mt20">
                 <div class="f30 c3 mb30">轮播图<span class="f26 ml20">(为保证显示效果，建议上传3张以上图片)</span></div>
-<!--                 <div class="img_box flex_warp">
-                    <img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
-                    <img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
-                    <img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
-                    <img class="add_icon" onclick="$(this).next().click();" src="../images/add_img_icon.png" alt="" />
-                    <input class="hide" type="file" onchange="uploadImg(this, 2)" />
-                </div> -->
-
                 <div class="intro_img_box flex_warp">
-                    <div class="img_item_box">
-                        <img class="img_close" onclick="closeImg(this)" src="../images/img_close.png" alt="">
+<!--                     <div class="img_item_box">
+                        <img class="img_close" onclick="closeImg(this, 2)" src="../images/img_close.png" alt="">
                         <img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
-                    </div>
+                    </div> -->
                     
                     <div class="img_item_box" onclick="$(this).find('input')[0].click();">
-                        <input class="hide" type="file" onchange="uploadImg(this, 3)" />
+                        <input class="hide" type="file" onchange="uploadImg(this, 2)" />
                         <img class="add_icon" src="../images/add_img_icon.png" alt="">
                     </div>
                 </div>
@@ -78,10 +78,10 @@
                     <textarea class="flex1 introduction" rows="5" maxlength="200" placeholder="请输入店铺简介"></textarea>
                 </div>
                 <div class="intro_img_box flex_warp">
-                    <div class="img_item_box">
-                        <img class="img_close" onclick="closeImg(this)" src="../images/img_close.png" alt="">
+<!--                     <div class="img_item_box">
+                        <img class="img_close" onclick="closeImg(this, 3)" src="../images/img_close.png" alt="">
                         <img src="http://h.hiphotos.baidu.com/image/pic/item/902397dda144ad340668b847d4a20cf430ad851e.jpg" alt="">
-                    </div>
+                    </div> -->
 
                     <div class="img_item_box" onclick="$(this).find('input')[0].click();">
                         <input class="hide" type="file" onchange="uploadImg(this, 3)" />
@@ -90,41 +90,222 @@
                 </div>
             </div>
 
-            <div class="apply_entry_btn">申请入驻</div>
+            <div class="apply_entry_btn" onclick="submitEntry()">申请入驻</div>
         </div>
+    </div>
+
+    <div class="tankuang hide"></div>
+    <div class="map_container hide">
+        <div class="flex_start flex_items search_ipt">
+            <input type="text" id="address" class="flex1" placeholder="地址搜索" />
+            <input type="hidden" name="lat" />
+            <input type="hidden" name="lng" />
+            <button type="button" onclick="codeAddress(this);">确认</button>
+        </div>
+        <div id="map_box" class="mt20"></div>
     </div>
 
 
     <script type="text/javascript" src="../js/jquery-2.1.4.js"></script>
     <script type="text/javascript" src="../js/jquery-weui.min.js"></script>
     <script type='text/javascript' src='../js/swiper.js' charset='utf-8'></script>
-    <!-- <script type="text/javascript" src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script> -->
+    <script type="text/javascript" src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
     <script charset="utf-8" src="https://map.qq.com/api/js?v=2.exp&key=NKDBZ-Q6RWU-TO7VE-2MRPR-PLDV3-VZFOZ&libraries=geometry,place,convertor"></script>
 
     <script type="text/javascript">
-        // 删除图片
-        function closeImg(e) {
-            $(e).parent().remove();
+        //文档结束加载函数
+        var citylocation, geocoder, map, marker = null;
+        var markersArray = [];
+        var init = function() {
+            var lat = $('input[name=lat]').val();
+            var lng = $('input[name=lng]').val();
+
+            var center = new qq.maps.LatLng(39.916527,116.397128);
+            map = new qq.maps.Map(document.getElementById("map_box"),{
+                center: center,
+                zoom: 11
+            });
+
+            if (lat) {
+                var latLng = new qq.maps.LatLng(lat, lng);
+                map.setCenter(latLng);
+                // 逆地址解析
+                geocoder.getAddress(latLng);
+            } else {
+                //获取城市列表接口设置中心点
+                citylocation = new qq.maps.CityService({
+                    complete: function(result){
+                        // console.log(result);
+                        var latLng = result.detail.latLng;
+                        map.setCenter(latLng);
+                        // 逆地址解析
+                        geocoder.getAddress(result.detail.latLng);
+                    }
+                });
+                //调用searchLocalCity();方法    根据用户IP查询城市信息。
+                citylocation.searchLocalCity();
+            }
+            
+            //添加监听事件   获取鼠标单击事件
+            qq.maps.event.addListener(map, 'click', function(event) {
+                // 逆地址解析
+                geocoder.getAddress(event.latLng);
+            });
+
+            //地址和经纬度之间进行转换服务
+            geocoder = new qq.maps.Geocoder({
+                complete: function(result){
+                    // console.log(result);
+                    // map.setCenter(result.detail.location);
+                    deleteOverlays();
+                    var marker = new qq.maps.Marker({
+                        map:map,
+                        position: result.detail.location
+                    });
+                    markersArray.push(marker);
+                    $('input[name=lat]').val(result.detail.location.lat);
+                    $('input[name=lng]').val(result.detail.location.lng);
+                    $('#address').val(result.detail.address);
+                    if (!(result.detail.hasOwnProperty('nearPois'))) { //关闭地图弹框
+                        $('body').css('overflow','auto');
+                        $('input[name=storeAddress]').val(result.detail.address);
+                        $('.map_container').hide().prev().hide();
+                    }
+                },
+                error: function() {
+                    $.alert("出错了，地址解析失败！");
+                }
+            });
         }
 
-    //     var geolocation = new qq.maps.Geolocation("NKDBZ-Q6RWU-TO7VE-2MRPR-PLDV3-VZFOZ", "myapp"); 
-    //     var positionNum = 0;
-    //     var options = {timeout: 8000};
-    //     function showPosition(position) {
-    //         console.log(1212);
-    //         var adCode = position.adCode;//邮政编码
-    //         var nation = position.nation;//中国
-    //         var city = position.city; //城市
-    //         var addr = position.addr; //详细地址
-    //         var lat = position.lat; //
-    //         var lng = position.lng; //火星坐标 //TODO 实现业务代码逻辑 
-    //         console.log(position);
-    //      }; 
-    //     function showErr(err) { 
-    //         console.log(222,err);
-    //         //TODO 如果出错了调用此方法 
-    //     };
+        var geolocation = new qq.maps.Geolocation("NKDBZ-Q6RWU-TO7VE-2MRPR-PLDV3-VZFOZ", "myapp");
 
+
+        // 获取当前位置
+        function getGeolocation() {
+            if (navigator.geolocation) {
+                console.log(11);
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else{
+                console.log(22);
+            }
+        }
+
+        function showPosition(position) {
+            console.log(position);
+            alert(1,position.coords.latitude);
+            var lat=position.coords.latitude; 
+            var lng=position.coords.longitude;
+            //调用地图命名空间中的转换接口   type的可选值为 1:GPS经纬度，2:搜狗经纬度，3:百度经纬度，4:mapbar经纬度，5:google经纬度，6:搜狗墨卡托
+            qq.maps.convertor.translate(new qq.maps.LatLng(lat,lng), 1, function(res){
+                //取出经纬度并且赋值
+                latlng = res[0];
+                var map = new qq.maps.Map(document.getElementById("container"),{
+                    center:  latlng,
+                    zoom: 13
+                });
+                //设置marker标记
+                var marker = new qq.maps.Marker({
+                    map : map,
+                    position : latlng
+                });
+            });
+        }
+
+        //删除覆盖物
+        function deleteOverlays() {
+            if (markersArray) {
+                for (i in markersArray) {
+                    markersArray[i].setMap(null);
+                }
+                markersArray.length = 0;
+            }
+        }
+
+
+        // 显示地图
+        function showMap() {
+            init();
+            getGeolocation();
+            $('.map_container').show().prev().show();
+            $('body').css('overflow','hidden');
+        }
+
+        // 地址解析
+        function codeAddress(o) {
+            var address = $("#address").val();
+            if (address === '') {
+                $.toast('请输入搜索地址','text');
+                return;
+            }
+            //对指定地址进行解析
+            geocoder.getLocation(address);
+        }
+
+        // 关联员工电话
+        function linkPhone(o) {
+            var hidden = $(o).parent().next().is(':hidden');
+            if (hidden) {
+                $(o).html('关闭关联');
+            } else {
+                $(o).html('+关联员工');
+            }
+            $(o).parent().next().toggle();
+        }
+
+
+        var vals1 = [];
+        var vals2 = [];
+        for(i = 0; i <= 23; i++) {
+            var val = i < 10 ? '0'+i : i;
+            vals1.push(val);
+        }
+        for(i = 0; i <= 59; i++) {
+            var va = i < 10 ? '0'+i : i;
+            vals2.push(va);
+        }
+        
+        $("#picker-start").picker({
+            title: "请选择时间",
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: vals1
+                },
+                {
+                    textAlign: 'center',
+                    values: vals2
+                }
+            ],
+            toolbar: false,
+            onClose:function(res) {
+                var displayValue = res.displayValue;
+                $('#picker-start').next().val(displayValue[0] + ':' + displayValue[1]);
+            }
+        });
+
+        $("#picker-end").picker({
+            title: "请选择时间",
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: vals1
+                },
+                {
+                    textAlign: 'center',
+                    values: vals2
+                }
+            ],
+            toolbar: false,
+            onClose:function(res) {
+                var displayValue = res.displayValue;
+                $('#picker-end').next().val(displayValue[0] + ':' + displayValue[1]);
+            }
+        });
+
+        var logo = '';//logo
+        var arr2 = [];//轮播
+        var arr3 = []//简介
 
         // 文件上传
         function uploadImg(f, types) { //f->this, types->上传类型
@@ -135,15 +316,45 @@
                 rd.onloadend = function(e) {
                     //加载完毕之后获取结果赋值给img
                     if (types == 1) { //logo
+                        logo = files.name;
                         $('.logo_box').find('img').attr('src',this.result);
-                    } else if (types == 2) { //轮播图
-                        // $('.img_box').append('<img src="'+this.result+'">');
-                        $(f).prev().before('<img src="'+this.result+'">');
-                    } else { //简介
-                        var imgbox = $('<div class="img_item_box"><img class="img_close" onclick="closeImg(this)" src="../images/img_close.png" alt=""><img src="'+this.result+'" alt=""></div>');
-                        $(f).parent().before(imgbox)
+                    } else { //轮播、简介
+                        if(types == 2) {
+                            arr2.push(files.name);
+                        } else {
+                            arr3.push(files.name);
+                        }
+                        var imgbox = $('<div class="img_item_box"><img class="img_close" onclick="closeImg(this, '+types+')" src="../images/img_close.png" alt=""><img src="'+this.result+'" alt=""></div>');
+                        $(f).parent().before(imgbox);
                     }
                 }
+            }
+        }
+
+        // 删除图片
+        function closeImg(e, types) {
+            var index = $(e).parent().index();
+            if (types == 2) {//轮播
+                arr2.splice(index, 1);
+            } else {//简介
+                arr3.splice(index, 1);
+            }
+            $(e).parent().remove();
+        }
+
+        // 提交事件
+        function submitEntry() {
+            if (!logo || logo == '') {
+                $.toast('请上传店铺logo', 'text');
+                return;
+            }
+            if (arr2.length == 0) {
+                $.toast('请上传轮播图', 'text');
+                return;
+            }
+            if (arr3.length == 0) {
+                $.toast('请上传店铺实景图', 'text');
+                return;
             }
         }
 
