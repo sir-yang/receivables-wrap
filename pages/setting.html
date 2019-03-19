@@ -25,22 +25,22 @@
                     <img class="right_icon" src="../images/arrow_right.png" alt="" />
                 </div>
             </div>
-            <div class="info_item flex_between flex_items">
+            <div class="info_item flex_between flex_items" onclick="showChangeModal('name',this)">
                 <label>昵称</label>
                 <div class="flex_start flex_items">
-                    <span>李斯</span>
+                    <span class="user_name">李斯</span>
                     <img class="right_icon" src="../images/arrow_right.png" alt="" />
                 </div>
             </div>
 
-            <div class="info_item flex_between flex_items mt20">
+            <div class="info_item flex_between flex_items mt20" onclick="showChangeModal('logo',this)">
                 <label>修改密码</label>
                 <div class="flex_start flex_items">
                     <span></span>
                     <img class="right_icon" src="../images/arrow_right.png" alt="" />
                 </div>
             </div>
-            <div class="info_item flex_between flex_items">
+            <div class="info_item flex_between flex_items" onclick="showChangeModal('pay',this)">
                 <label>设置支付密码</label>
                 <div class="flex_start flex_items">
                     <span></span>
@@ -51,12 +51,134 @@
         </div>
     </div>
 
+    <!-- 修改昵称 -->
+    <div class="change-modal hide"></div>
+    <div class="name-modal-content modal-content hide">
+        <div class="f32 c3 txt_center mt20 mb30">修改昵称</div>
+        <input type="text" class="flex_ipt" placeholder="请输入昵称" />
+        <div class="sure-change-btn sure_name_btn">确认修改</div>
+    </div>
+
+    <!-- 修改密码 -->
+    <div class="password-modal-content modal-content hide">
+        <div class="f32 c3 txt_center mt20 bb30">修改登录密码</div>
+        <input type="text" name="phone" class="flex_ipt" placeholder="请输入手机号" />
+        <div class="flex_start flex_items mb30">
+            <input type="text" class="code_ipt" name="code" placeholder="请输入手机验证码" />
+            <button class="code_btn" onclick="getVerificationCode(this)">获取验证码</button>
+        </div>
+        <input type="password" class="flex_ipt" name="newpass" placeholder="请输入新密码" />
+        <input type="password" class="flex_ipt" name="confirmpass" placeholder="再次输入密码" />
+        <div class="sure-change-btn sure_password_btn" onclick="changeLoginPassword(this, 'login')">确认修改</div>
+    </div>
+
+    <!-- 修改支付密码 -->
+    <div class="payword-modal-content modal-content hide">
+        <div class="f32 c3 txt_center mt20 mb30">修改支付密码</div>
+        <input type="text" name="phone" class="flex_ipt" placeholder="请输入手机号" />
+        <div class="flex_start flex_items mb30">
+            <input type="text" class="code_ipt" name="code" placeholder="请输入手机验证码" />
+            <button class="code_btn" onclick="getVerificationCode(this)">获取验证码</button>
+        </div>
+        <input type="password" class="flex_ipt" name="newpass" placeholder="请输入新密码" />
+        <input type="password" class="flex_ipt" name="confirmpass" placeholder="再次输入密码" />
+        <div class="sure-change-btn sure__btn" onclick="changeLoginPassword(this, 'pay')">确认修改</div>
+    </div>
+
 
     <script type="text/javascript" src="../js/jquery-2.1.4.js"></script>
     <script type="text/javascript" src="../js/jquery-weui.min.js"></script>
     <script type='text/javascript' src='../js/swiper.js' charset='utf-8'></script>
     <script type="text/javascript">
-        
+        // 关闭弹框
+        $('.change-modal').click(function() {
+            $(this).hide().nextAll('div').hide();
+        })
+
+        function showChangeModal(types,o) {
+            if (types === 'name') {
+                $('.name-modal-content').show().siblings('.change-modal').show();
+                var name = $(o).find('span').html();
+                $('.name-modal-content').find('input').val(name);
+            } else if (types === 'logo') { //登录密码
+                $('.password-modal-content').show().siblings('.change-modal').show();
+                $('.password-modal-content').find('input').each(function() {
+                    $(this).val("");
+                })
+            } else {
+                $('.payword-modal-content').show().siblings('.change-modal').show();
+                $('.payword-modal-content').find('input').each(function() {
+                    $(this).val("");
+                })
+            }
+        }
+
+        // 确认修改昵称
+        $('.sure_name_btn').click(function() {
+            var name = $(this).prev().val();
+            if (name == '') {
+                $.toast("真实姓名不能为空", "text");
+                return false;
+            }
+
+            $(this).parent().hide().prev().hide();
+            $('.user_name').html(name);
+        })
+
+        // 修改密码
+        function changeLoginPassword(o, types) { //types login =>登录密码 pay =>支付密码
+            var re = true;
+            $(o).parent().find('input').each(function() {
+                if ($(this).val() === "") {
+                    $(this).focus();
+                    $.toast('信息填写不完整', 'text');
+                    re = false;
+                    return false;
+                }
+            })
+            if (!re) return;
+            var newpass = $(o).parent().find('input[name=newpass]').val();
+            var confirmpass = $(o).parent().find('input[name=confirmpass]').val();
+            if (newpass != confirmpass) {
+                $.toast('两次密码不一致','text');
+                return false;
+            }
+            $.toast('密码修改成功', 'text');
+            $(o).parents('.modal-content').siblings('.change-modal').hide();
+        }
+
+        // 获取验证码
+        var timeDown = 10;
+        var times = '';
+        function getVerificationCode(o) {
+            var phone = $(o).parents('.modal-content').find('input[name=phone]').val();
+            if (!phone || phone == "") {
+                $.toast('请输入手机号','text');
+                return false;
+            }
+            var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+            if (!myreg.test(phone)) {
+                $.toast('手机号格式错误','text');
+                return false;
+            }
+
+            times = setInterval(function() {
+                downTime(o);
+            }, 1000);
+        }
+
+        // 倒计时
+        function downTime(o) {
+            if (timeDown > 0) {
+                $(o).html('重新获取 '+ timeDown +'s').prop('disabled', true).addClass('def');
+                timeDown --;
+            } else {
+                timeDown = 10;
+                clearInterval(times);
+                $(o).html('获取验证码').prop('disabled', false).removeClass('def');
+            }
+        }
+
     </script>
 </body>
 </html>
